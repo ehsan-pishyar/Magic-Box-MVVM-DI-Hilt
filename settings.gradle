@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name = "Magic Box"
+include ':data'
+include ':domain'
