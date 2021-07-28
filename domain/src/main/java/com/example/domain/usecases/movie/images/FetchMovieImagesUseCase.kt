@@ -1,6 +1,6 @@
 package com.example.domain.usecases.movie.images
 
-import com.example.domain.repositories.movie.IMovieImagesRepository
+import com.example.domain.repositories.movie.MovieImagesRepository
 
-class FetchMovieImagesUseCase(private val movieImagesRepository: IMovieImagesRepository) {
+class FetchMovieImagesUseCase(private val movieImagesRepository: MovieImagesRepository) {
 }

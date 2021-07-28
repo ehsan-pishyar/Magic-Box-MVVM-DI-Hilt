@@ -1,6 +1,6 @@
 package com.example.domain.usecases.tvshow.toprated
 
-import com.example.domain.repositories.tvshow.ITopRatedTvShowsRepository
+import com.example.domain.repositories.tvshow.TopRatedTvShowsRepository
 
-class FetchTopRatedTvShowsUseCase (private val topRatedTvShowsRepository: ITopRatedTvShowsRepository) {
+class FetchTopRatedTvShowsUseCase (private val topRatedTvShowsRepository: TopRatedTvShowsRepository) {
 }

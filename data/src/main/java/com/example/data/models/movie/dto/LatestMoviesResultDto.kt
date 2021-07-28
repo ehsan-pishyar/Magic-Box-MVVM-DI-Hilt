@@ -23,15 +23,15 @@ data class LatestMoviesResultDto(
     @SerializedName("poster_path")
     val posterPath: String?,
     @SerializedName("production_companies")
-    val productionCompanies: List<Any>?,
+    val productionCompanies: List<ProductionCompanyDto>?,
     @SerializedName("production_countries")
-    val productionCountries: List<Any>?,
+    val productionCountries: List<ProductionCountryDto>?,
     @SerializedName("release_date")
     val releaseDate: String?,
     val revenue: Int?,
     val runtime: Int?,
     @SerializedName("spoken_languages")
-    val spokenLanguages: List<Any>?,
+    val spokenLanguages: List<SpokenLanguageDto>?,
     val status: String?,
     val tagline: String?,
     val title: String?,

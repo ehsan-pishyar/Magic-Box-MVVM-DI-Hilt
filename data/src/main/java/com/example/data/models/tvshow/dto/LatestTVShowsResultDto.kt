@@ -6,7 +6,7 @@ data class LatestTVShowsResultDto(
     @SerializedName("backdrop_path")
     val backdropPath: Any?,
     @SerializedName("created_by")
-    val createdBy: List<Any>?,
+    val createdBy: List<CreatedByDto>?,
     @SerializedName("episode_run_time")
     val episodeRunTimes: List<Int>?,
     @SerializedName("first_air_date")
@@ -36,7 +36,7 @@ data class LatestTVShowsResultDto(
     @SerializedName("poster_path")
     val posterPath: Any?,
     @SerializedName("production_companies")
-    val productionCompanies: List<Any>?,
+    val productionCompanies: List<ProductionCompanyDto>?,
     val season: List<SeasonDto>?,
     val status: String?,
     val type: String?,

@@ -1,6 +1,6 @@
 package com.example.domain.usecases.movie.toprated
 
-import com.example.domain.repositories.movie.ITopRatedMoviesRepository
+import com.example.domain.repositories.movie.TopRatedMoviesRepository
 
-class FetchTopRatedMoviesUseCase (private val topRatedMoviesRepository: ITopRatedMoviesRepository) {
+class FetchTopRatedMoviesUseCase (private val topRatedMoviesRepository: TopRatedMoviesRepository) {
 }

@@ -6,7 +6,7 @@ import androidx.room.Entity
 @Entity(tableName = "latest_tvshows")
 data class LatestTVShowsResultEntity(
     val backdrop_path: Any?,
-    val created_by: List<Any>?,
+    val created_by: List<CreatedByEntity>?,
     val episode_run_time: List<Int>?,
     val first_air_date: String?,
     val genre: List<GenreEntity>?,
@@ -25,7 +25,7 @@ data class LatestTVShowsResultEntity(
     val overview: Any?,
     val popularity: Int?,
     val poster_path: Any?,
-    val production_companies: List<Any>?,
+    val production_companies: List<ProductionCompanyEntity>?,
     val season: List<SeasonEntity>?,
     val status: String?,
     val type: String?,
