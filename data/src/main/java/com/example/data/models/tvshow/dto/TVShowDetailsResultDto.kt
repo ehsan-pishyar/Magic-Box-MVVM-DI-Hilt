@@ -24,8 +24,6 @@ data class TVShowDetailsResultDto(
     val lastEpisodeToAirDto: LastEpisodeToAirDto?,
     val name: String?,
     val network: List<NetworkDto>?,
-    @SerializedName("next_episode_to_air")
-    val nextEpisodeToAir: Any?,
     @SerializedName("number_of_episodes")
     val numberOfEpisodes: Int?,
     @SerializedName("number_of_seasons")

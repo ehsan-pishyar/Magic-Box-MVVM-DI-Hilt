@@ -4,43 +4,136 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.magicbox.utils.Resource
+import com.example.data.util.StateListener
+import com.example.domain.models.movie.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.*
+import com.example.domain.repositories.movie.*
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieMainViewmodel @Inject constructor(): ViewModel() {
+class MovieMainViewmodel @Inject constructor(
+    private val popularMoviesRepository: PopularMoviesRepository,
+    private val latestMoviesRepository: LatestMoviesRepository,
+    private val nowPlayingMoviesRepository: NowPlayingMoviesRepository,
+    private val topRatedMoviesRepository: TopRatedMoviesRepository,
+    private val upcomingMoviesRepository: UpcomingMoviesRepository,
+): ViewModel() {
 
-    /*
-    private val _latestMovies = MutableLiveData<Resource<LatestMoviesResponse>>()
-    private val _nowPlayingMovies = MutableLiveData<Resource<NowPlayingMoviesResponse>>()
-    private val _popularMovies = MutableLiveData<Resource<PopularMoviesResponse>>()
-    private val _topRatedMovies = MutableLiveData<Resource<TopRatedMoviesResponse>>()
-    private val _upcomingMovies = MutableLiveData<Resource<UpcomingMoviesResponse>>()
-    private val _similarMovies = MutableLiveData<Resource<SimilarMoviesResponse>>()
-    private val _movieDetails = MutableLiveData<Resource<MovieDetailsResponse>>()
-    private val _movieImages = MutableLiveData<Resource<MovieImagesResponse>>()
-    private val _movieVideos = MutableLiveData<Resource<MovieVideosResponse>>()
+    init {
+        fetchPopularMovies()
+        fetchLatestMovies()
+        fetchNowPlayingMovies()
+        fetchTopRatedMovies()
+        fetchUpcomingMovies()
+    }
 
-    val latestMovies: LiveData<Resource<LatestMoviesResponse>> get() = _latestMovies
-    val nowPlayingMovies: LiveData<Resource<NowPlayingMoviesResponse>> get() = _nowPlayingMovies
-    val popularMovies: LiveData<Resource<PopularMoviesResponse>> get() = _popularMovies
-    val topRatedMovies: LiveData<Resource<TopRatedMoviesResponse>> get() = _topRatedMovies
-    val upcomingMovies: LiveData<Resource<UpcomingMoviesResponse>> get() = _upcomingMovies
-    val similarMovies: LiveData<Resource<SimilarMoviesResponse>> get() = _similarMovies
-    val movieDetails: LiveData<Resource<MovieDetailsResponse>> get() = _movieDetails
-    val movieImages: LiveData<Resource<MovieImagesResponse>> get() = _movieImages
-    val movieVideos: LiveData<Resource<MovieVideosResponse>> get() = _movieVideos
+    private val stateListener: StateListener? = null
 
-    fun getPopularMovies() = viewModelScope.launch {
-        _popularMovies.value = Resource.loading(null)
-        movieRepository.getPopularMovies().let { response ->
-            if (response.isSuccessful){
-                _popularMovies.value = Resource.success(response.body()!!)
-            }else _popularMovies.value = Resource.error(null, "${response.code()}")
+    private val _popularMovies = MutableLiveData<PopularMoviesResult>()
+    val popularMovies: LiveData<PopularMoviesResult> get() = _popularMovies
+
+    private val _latestMovies = MutableLiveData<LatestMoviesResult>()
+    val latestMovies: LiveData<LatestMoviesResult> get() = _latestMovies
+
+    private val _nowPlayingMovies = MutableLiveData<NowPlayingMoviesResult>()
+    val nowPlayingMovies: LiveData<NowPlayingMoviesResult> get() = _nowPlayingMovies
+
+    private val _topRatedMovies = MutableLiveData<TopRatedMoviesResult>()
+    val topRatedMovies: LiveData<TopRatedMoviesResult> get() = _topRatedMovies
+
+    private val _upcomingMovies = MutableLiveData<UpcomingMoviesResult>()
+    val upcomingMovies: LiveData<UpcomingMoviesResult> get() = _upcomingMovies
+
+    private fun fetchPopularMovies(){
+        viewModelScope.launch {
+            stateListener?.onLoading()
+
+            try {
+                val popularMoviesResponse = popularMoviesRepository.fetchPopularMovies()
+                popularMoviesResponse.collect {
+                    _popularMovies.value = it
+                    stateListener?.onSuccess("Popular Movies Fetched Successfully")
+                }
+                return@launch
+            }catch (e: Exception){
+                stateListener?.onError(e.message)
+                return@launch
+            }
         }
     }
 
-     */
+    private fun fetchLatestMovies(){
+        viewModelScope.launch {
+            stateListener?.onLoading()
+
+            try {
+                val latestMoviesResponse = latestMoviesRepository.fetchLatestMovies()
+                latestMoviesResponse.collect {
+                    _latestMovies.value = it
+                    stateListener?.onSuccess("Latest Movies Fetched Successfully")
+                }
+                return@launch
+            }catch (e: Exception){
+                stateListener?.onError(e.message)
+                return@launch
+            }
+        }
+    }
+
+    private fun fetchNowPlayingMovies(){
+        viewModelScope.launch {
+            stateListener?.onLoading()
+
+            try {
+                val nowPlayingMoviesResponse = nowPlayingMoviesRepository.fetchNowPlayingMovies()
+                nowPlayingMoviesResponse.collect {
+                    _nowPlayingMovies.value = it
+                    stateListener?.onSuccess("Now Playing Movies Fetched Successfully")
+                }
+                return@launch
+            }catch (e: Exception){
+                stateListener?.onError(e.message)
+                return@launch
+            }
+        }
+    }
+
+    private fun fetchTopRatedMovies(){
+        viewModelScope.launch {
+            stateListener?.onLoading()
+
+            try {
+                val topRatedMoviesResponse = topRatedMoviesRepository.fetchTopRatedMovies()
+                topRatedMoviesResponse.collect {
+                    _topRatedMovies.value = it
+                    stateListener?.onSuccess("Top Rated Movies Fetched Successfully")
+                }
+                return@launch
+            }catch (e: Exception){
+                stateListener?.onError(e.message)
+                return@launch
+            }
+        }
+    }
+
+    private fun fetchUpcomingMovies(){
+        viewModelScope.launch {
+            stateListener?.onLoading()
+
+            try {
+                val upcomingMoviesResponse = upcomingMoviesRepository.fetchUpcomingMovies()
+                upcomingMoviesResponse.collect {
+                    _upcomingMovies.value = it
+                    stateListener?.onSuccess("Upcoming Movies Fetched Successfully")
+                }
+                return@launch
+            }catch (e: Exception){
+                stateListener?.onError(e.message)
+                return@launch
+            }
+        }
+    }
 }

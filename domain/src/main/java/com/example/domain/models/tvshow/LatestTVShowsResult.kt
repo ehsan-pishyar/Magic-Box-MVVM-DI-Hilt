@@ -2,8 +2,8 @@ package com.example.domain.models.tvshow
 
 
 data class LatestTVShowsResult(
-    val backdrop_path: Any?,
-    val created_by: List<Any>?,
+    val backdrop_path: String?,
+    val created_by: List<CreatedBy>?,
     val episode_run_time: List<Int>?,
     val first_air_date: String?,
     val genres: List<Genre>?,
@@ -19,10 +19,10 @@ data class LatestTVShowsResult(
     val origin_country: List<String>?,
     val original_language: String?,
     val original_name: String?,
-    val overview: Any?,
+    val overview: String?,
     val popularity: Int?,
-    val poster_path: Any?,
-    val production_companies: List<Any>?,
+    val poster_path: String?,
+    val production_companies: List<ProductionCompany>?,
     val seasons: List<Season>?,
     val status: String?,
     val type: String?,

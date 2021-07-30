@@ -10,7 +10,7 @@ data class SeasonDto(
     val episodeCount: Int?,
     val id: Int?,
     @SerializedName("poster_path")
-    val posterPath: Any?,
+    val posterPath: String?,
     @SerializedName("season_number")
     val seasonNumber: Int?
 )

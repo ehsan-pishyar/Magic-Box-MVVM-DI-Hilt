@@ -15,7 +15,6 @@ data class TVShowDetailsResult(
     val last_episode_to_air: LastEpisodeToAir?,
     val name: String?,
     val networks: List<Network>?,
-    val next_episode_to_air: Any?,
     val number_of_episodes: Int?,
     val number_of_seasons: Int?,
     val origin_country: List<String>?,

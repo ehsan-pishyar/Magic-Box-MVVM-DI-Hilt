@@ -6,7 +6,7 @@ import androidx.room.Entity
 @Entity(tableName = "latest_movies")
 data class LatestMoviesResultEntity(
     val adult: Boolean?,
-    val backdrop_path: Any?,
+    val backdrop_path: String?,
     val belongs_to_collection: Any?,
     val budget: Int?,
     val genre: List<GenreEntity>?,

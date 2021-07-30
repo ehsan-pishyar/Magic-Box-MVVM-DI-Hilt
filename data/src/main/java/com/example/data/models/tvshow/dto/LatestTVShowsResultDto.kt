@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class LatestTVShowsResultDto(
     @SerializedName("backdrop_path")
-    val backdropPath: Any?,
+    val backdropPath: String?,
     @SerializedName("created_by")
     val createdBy: List<CreatedByDto>?,
     @SerializedName("episode_run_time")
@@ -31,10 +31,10 @@ data class LatestTVShowsResultDto(
     val originalLanguage: String?,
     @SerializedName("original_name")
     val originalName: String?,
-    val overview: Any?,
+    val overview: String?,
     val popularity: Int?,
     @SerializedName("poster_path")
-    val posterPath: Any?,
+    val posterPath: String?,
     @SerializedName("production_companies")
     val productionCompanies: List<ProductionCompanyDto>?,
     val season: List<SeasonDto>?,

@@ -2,6 +2,7 @@ package com.example.data.mappers.movie
 
 import com.example.data.models.movie.dto.*
 import com.example.data.models.movie.entity.*
+import com.example.domain.models.movie.PopularMoviesResult
 
 internal fun BackdropDto.toEntity(): BackdropEntity {
     return BackdropEntity(
@@ -103,9 +104,8 @@ internal fun ResultDto.toEntity(): ResultEntity {
 }
 
 // now playing - popular - similar - top rated - upcoming
-internal fun NowPlayingMoviesResultDto.toEntity(): NowPlayingMoviesResultEntity {
-    return NowPlayingMoviesResultEntity(
-        this.dates?.toEntity(),
+internal fun PopularMoviesResultDto.toEntity(): PopularMoviesResultEntity {
+    return PopularMoviesResultEntity(
         this.page,
         this.result?.map { it.toEntity() },
         this.totalPages,

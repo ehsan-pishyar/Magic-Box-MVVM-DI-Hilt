@@ -17,18 +17,18 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun baseUrlProvider() = Constants.BASE_URL
 
-    @Singleton
     @Provides
+    @Singleton
     fun loggingInterceptorProvider(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
-    @Singleton
     @Provides
+    @Singleton
     fun okHttpClientProvider(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val okHttpClient = OkHttpClient.Builder()
 
@@ -40,8 +40,8 @@ object NetworkModule {
         return okHttpClient.build()
     }
 
-    @Singleton
     @Provides
+    @Singleton
     fun retrofitProvider(okHttpClient: OkHttpClient, baseUrl: String) =
         Retrofit.Builder()
             .baseUrl(baseUrl)
@@ -49,8 +49,8 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-    @Singleton
     @Provides
+    @Singleton
     fun apiServiceProvider(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }

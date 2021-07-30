@@ -14,57 +14,57 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun databaseProvider(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, MagicBoxDatabase::class.java, "magicbox_db").build()
 
-    @Singleton
     @Provides
+    @Singleton
     fun latestMoviesDaoProvider(db: MagicBoxDatabase) = db.latestMoviesDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun nowPlayingMoviesDaoProvider(db: MagicBoxDatabase) = db.nowPlayingMoviesDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun popularMoviesDaoProvider(db: MagicBoxDatabase) = db.popularMoviesDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun similarMoviesDaoProvider(db: MagicBoxDatabase) = db.similarMoviesDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun topRatedMoviesDaoProvider(db: MagicBoxDatabase) = db.topRatedMoviesDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun upcomingMoviesDaoProvider(db: MagicBoxDatabase) = db.upcomingMoviesDao()
 
-
-    @Singleton
+// -------------------------------- Tv Shows --------------------------------------
     @Provides
+    @Singleton
     fun airingTodayTvShowsDaoProvider(db: MagicBoxDatabase) = db.airingTodayTvShowsDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun latestTvShowsDaoProvider(db: MagicBoxDatabase) = db.latestTvShowsDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun onTheAirTvShowsDaoProvider(db: MagicBoxDatabase) = db.onTheAirTvShowsDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun popularTvShowsDaoProvider(db: MagicBoxDatabase) = db.popularTvShowsDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun similarTvShowsDaoProvider(db: MagicBoxDatabase) = db.similarTvShowsDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun topRatedTvShowsDaoProvider(db: MagicBoxDatabase) = db.topRatedTvShowsDao()
 }

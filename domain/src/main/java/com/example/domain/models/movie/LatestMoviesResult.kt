@@ -3,7 +3,7 @@ package com.example.domain.models.movie
 
 data class LatestMoviesResult(
     val adult: Boolean?,
-    val backdrop_path: Any?,
+    val backdrop_path: String?,
     val belongs_to_collection: Any?,
     val budget: Int?,
     val genres: List<Genre>?,
