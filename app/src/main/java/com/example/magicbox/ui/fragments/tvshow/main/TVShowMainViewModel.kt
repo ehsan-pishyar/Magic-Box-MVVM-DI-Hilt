@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class TVShowMainViewmodel @Inject constructor(): ViewModel() {
+class TVShowMainViewModel @Inject constructor(): ViewModel() {
 
     /*
     private val _latestTVShows = MutableLiveData<Resource<LatestTVShowsResponse>>()

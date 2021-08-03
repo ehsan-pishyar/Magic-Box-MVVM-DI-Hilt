@@ -1,5 +1,6 @@
 package com.example.magicbox.ui.fragments.movie.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +15,7 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieMainViewmodel @Inject constructor(
+class MovieMainViewModel @Inject constructor(
     private val popularMoviesRepository: PopularMoviesRepository,
     private val latestMoviesRepository: LatestMoviesRepository,
     private val nowPlayingMoviesRepository: NowPlayingMoviesRepository,
@@ -24,10 +25,10 @@ class MovieMainViewmodel @Inject constructor(
 
     init {
         fetchPopularMovies()
-        fetchLatestMovies()
-        fetchNowPlayingMovies()
-        fetchTopRatedMovies()
-        fetchUpcomingMovies()
+        //fetchLatestMovies()
+        //fetchNowPlayingMovies()
+        //fetchTopRatedMovies()
+        //fetchUpcomingMovies()
     }
 
     private val stateListener: StateListener? = null
@@ -56,10 +57,12 @@ class MovieMainViewmodel @Inject constructor(
                 popularMoviesResponse.collect {
                     _popularMovies.value = it
                     stateListener?.onSuccess("Popular Movies Fetched Successfully")
+                    Log.d("RESPONSE SUCCESSFUL: ", "Popular Movies Fetched Successfully")
                 }
                 return@launch
             }catch (e: Exception){
                 stateListener?.onError(e.message)
+                Log.e("RESPONSE ERROR: ", "Popular Movies Fetched Was Failed!")
                 return@launch
             }
         }
@@ -74,10 +77,12 @@ class MovieMainViewmodel @Inject constructor(
                 latestMoviesResponse.collect {
                     _latestMovies.value = it
                     stateListener?.onSuccess("Latest Movies Fetched Successfully")
+                    Log.d("RESPONSE SUCCESSFUL: ", "Latest Movies Fetched Successfully")
                 }
                 return@launch
             }catch (e: Exception){
                 stateListener?.onError(e.message)
+                Log.e("RESPONSE ERROR: ", "Latest Movies Fetched Was Failed!")
                 return@launch
             }
         }
@@ -92,10 +97,12 @@ class MovieMainViewmodel @Inject constructor(
                 nowPlayingMoviesResponse.collect {
                     _nowPlayingMovies.value = it
                     stateListener?.onSuccess("Now Playing Movies Fetched Successfully")
+                    Log.d("RESPONSE SUCCESSFUL: ", "Now Playing Movies Fetched Successfully")
                 }
                 return@launch
             }catch (e: Exception){
                 stateListener?.onError(e.message)
+                Log.e("RESPONSE ERROR: ", "Now Playing Movies Fetched Was Failed!")
                 return@launch
             }
         }
@@ -110,10 +117,12 @@ class MovieMainViewmodel @Inject constructor(
                 topRatedMoviesResponse.collect {
                     _topRatedMovies.value = it
                     stateListener?.onSuccess("Top Rated Movies Fetched Successfully")
+                    Log.d("RESPONSE SUCCESSFUL: ", "Top Rated Movies Fetched Successfully")
                 }
                 return@launch
             }catch (e: Exception){
                 stateListener?.onError(e.message)
+                Log.e("RESPONSE ERROR: ", "Top Rated Movies Fetched Was Failed!")
                 return@launch
             }
         }
@@ -128,10 +137,12 @@ class MovieMainViewmodel @Inject constructor(
                 upcomingMoviesResponse.collect {
                     _upcomingMovies.value = it
                     stateListener?.onSuccess("Upcoming Movies Fetched Successfully")
+                    Log.d("RESPONSE SUCCESSFUL: ", "Upcoming Movies Fetched Successfully")
                 }
                 return@launch
             }catch (e: Exception){
                 stateListener?.onError(e.message)
+                Log.e("RESPONSE ERROR: ", "Upcoming Movies Fetched Was Failed!")
                 return@launch
             }
         }

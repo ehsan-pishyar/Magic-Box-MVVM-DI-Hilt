@@ -15,8 +15,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import com.example.data.mappers.movie.toDomain
 import com.example.data.mappers.movie.toEntity
+import javax.inject.Inject
 
-class PopularMoviesRepositoryImpl constructor(
+class PopularMoviesRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val magicBoxDatabase: MagicBoxDatabase,
     private val timeDatastore: TimeDatastore
@@ -47,8 +48,8 @@ class PopularMoviesRepositoryImpl constructor(
             System.currentTimeMillis()
         )
 
-        if (isPopularMoviesCacheAvailable && !isTimeSurpassed){
-            return popularMoviesDao.getPopularMoviesFromDB().map { it.toDomain() }
+        return if (isPopularMoviesCacheAvailable && !isTimeSurpassed){
+            popularMoviesDao.getPopularMoviesFromDB().map { it.toDomain() }
         } else {
             deletePopularMoviesFromDb()
 
@@ -57,7 +58,7 @@ class PopularMoviesRepositoryImpl constructor(
 
             timeDatastore.saveSyncTime(System.currentTimeMillis())
 
-            return popularMoviesDao.getPopularMoviesFromDB().map { it.toDomain() }
+            popularMoviesDao.getPopularMoviesFromDB().map { it.toDomain() }
         }
 
     }
